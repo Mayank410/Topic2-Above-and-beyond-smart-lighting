@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color Changing Bulbs</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="room">
+        <div class="bulb" id="bulb1"></div>
+        <div class="bulb" id="bulb2"></div>
+        <div class="bulb" id="bulb3"></div>
+        <div class="switch" onclick="toggleLights()"></div>
+    </div>
+    <script>
+        function toggleLights() {
+            var bulbs = document.querySelectorAll(".bulb");
+            var switchButton = document.querySelector(".switch");
+            if (switchButton.classList.contains("on")) {
+                switchButton.classList.remove("on");
+                switchButton.classList.add("off");
+                bulbs.forEach(bulb => bulb.style.backgroundColor = "#000");
+            } else {
+                switchButton.classList.remove("off");
+                switchButton.classList.add("on");
+                bulbs.forEach(bulb => bulb.style.backgroundColor = getRandomColor());
+            }
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+
+</html>
